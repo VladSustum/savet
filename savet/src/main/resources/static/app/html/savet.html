@@ -1,0 +1,88 @@
+<div ng-controller="savetCtrl">
+
+<form>
+<div class="form-group">
+<label for="zgrada">Zgrada</label>
+<select id="zgrada" class="form-control" ng-model="search.zgrada">
+<option ng-repeat="zgrada in zgrade" value="{{zgrada.id}}">{{zgrada.adresa}}</option>
+</select>
+</div>
+<div class="form-group">
+<label for="naslov">Naslov</label>
+<input id="naslov" class="form-control" ng-model="search.naslov">
+</div>
+<div class="form-group">
+<label for="tip">Tip</label>
+<select id="tip" class="form-control" ng-model="search.tip">
+<option value="obavestenje">Obavestenje</option>
+<option value="predlog">Predlog</option>
+</select>
+</div>
+<button class="btn btn-primary" ng-click="trazi()">Pretraga</button>
+</form>
+
+<form>
+<div class="form-group">
+<label for="naslov">Naslov</label>
+<input id="naslov" class="form-control" ng-model="newPoruka.naslov">
+</div>
+<div class="form-group">
+<label for="tip">Tip</label>
+<select id="tip" class="form-control" ng-model="newPoruka.tip">
+<option  value="obavestenje">Obavestenje</option>
+<option  value="predlog">Predlog</option>
+</select>
+</div>
+<div class="form-group">
+<label for="opis">Opis</label>
+<input id="opis" class="form-control" ng-model="newPoruka.opis">
+</div>
+<div ng-show="newPoruka.tip=='obavestenje'"  class="form-group">
+<label  for="procenat">Potreban procenat</label>
+<input id="procenat" class="form-control"  ng-model="newPoruka.procenat">
+</div>
+<div class="form-group">
+<label for="zgrada">Zgrada</label>
+<select id="zgrada" class="form-control" ng-model="newPoruka.zgradaId">
+<option ng-repeat="zgrada in zgrade" value="{{zgrada.id}}">{{zgrada.adresa}}</option>
+</select>
+</div>
+<button class="btn btn-primary" ng-click="dodaj()">Dodaj</button>
+</form>
+
+
+<div class="btn-group">
+			<button ng-disabled="pageNum == 0" ng-click="changePage(-1)" class="btn btn-info">Prethodna</button>
+			<button ng-disabled="pageNum >= totalPages - 1" ng-click="changePage(1)" class="btn btn-info">Sledeca</button>
+		</div>
+
+<table class="table">
+<thead>
+<tr>
+<td>Naslov</td>
+<td>Tip</td>
+<td>Opis</td>
+<td>Potreban %</td>
+<td>Zgrada</td>
+<td>Prihacen zahtev</td>
+<td>Broj za</td>
+</tr>
+</thead>
+<tbody>
+<tr ng-repeat="p in poruke">
+<td>{{p.naslov}}</td>
+<td>{{p.tip}}</td>
+<td>{{p.opis}}</td>
+<td>{{p.procenat}}</td>
+<td>{{p.zgradaAdresa}}</td>
+<td>{{p.prihvacen}}</td>
+<td>{{p.za}}</td>
+<td><button class="btn btn-danger" ng-click="doDelete(p.id)">Obrisi</button>
+<td><button class="btn btn-warning" ng-click="goToEdit(p.id)">Edit</button>
+<td><button class="btn btn-primary" ng-hide="p.tip=='predlog'" ng-click="glasajte(p.id)">Glasaj</button>
+</tr>
+</tbody>
+</table>
+
+
+</div>

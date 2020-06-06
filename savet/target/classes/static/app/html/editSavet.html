@@ -1,0 +1,33 @@
+<div ng-controller="editCtrl">
+
+<form>
+<div class="form-group">
+<label for="naslov">Naslov</label>
+<input id="naslov" class="form-control" ng-model="newPoruka.naslov">
+</div>
+<div class="form-group">
+<label for="tip">Tip</label>
+<select id="tip" class="form-control" ng-model="newPoruka.tip">
+<option value="obavestenje">Obavestenje</option>
+<option value="predlog">Predlog</option>
+</select>
+</div>
+<div class="form-group">
+<label for="opis">Opis</label>
+<input id="opis" class="form-control" ng-model="newPoruka.opis">
+</div>
+<div class="form-group">
+<label for="procenat">Potreban procenat</label>
+<input id="procenat" class="form-control" ng-model="newPoruka.procenat">
+</div>
+<div class="form-group">
+<label for="zgrada">Zgrada</label>
+<select id="zgrada" class="form-control" ng-model="newPoruka.zgradaId">
+<option ng-repeat="zgrada in zgrade" value="{{zgrada.id}}">{{zgrada.adresa}}</option>
+</select>
+</div>
+<button class="btn btn-primary" ng-click="doEdit()">Izmeni</button>
+</form>
+
+
+</div>
